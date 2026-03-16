@@ -1,0 +1,27 @@
+select left('Anusha',3) as left_3
+
+select right('Anusha',3) as right_3
+
+select upper('Anusha')
+
+select lower('Anusha')
+
+select reverse('Anusha')
+
+select len('Anusha')
+
+select ltrim('  hello  ')
+
+select rtrim('hello  ')
+
+select trim('  hello  ')--both side
+
+select substring('anusha292004@gmail.com',4,5)--4-position,5th is length from fourth position
+
+select charindex('@','anusha29204@gmail.com')--where is @ in 'anusha29204@gmail.com'
+
+select replicate('Anusha',4)--it repeats four times
+
+select 'Anu' + space(5) + 'sha'
+
+select replace('anusha292004@gmail.com','com','in')
