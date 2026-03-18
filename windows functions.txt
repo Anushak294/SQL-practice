@@ -1,0 +1,127 @@
+
+--adding new column  using window function
+use company
+select * from employeeee_official
+
+select *,
+		row_number() over(
+		order by joining_date
+		) as rank_joining_date
+from employeeee_official
+
+select *,
+		row_number() over(
+		order by name
+		) as row_name
+from employeeee_official
+
+--using partition
+select *,
+		row_number() over(
+		partition by dept
+		order by joining_date
+		) as rank_joining_date
+from employeeee_official 
+
+select *,                
+		dense_rank() over( 
+		order by age
+		) as dense_ranl_age
+from employeeee_official
+
+--difference between rank and dense_rank
+--rank:skip the numbers(1,2,2,4--it takes the row number)
+--dense_rank:it does not skip the numbers (1,2,2,3)
+
+alter table employeeee_official
+add age int
+
+update employeeee_official
+set age=
+case
+	when empid=501 then 21
+	when empid=503 then 22
+	when empid=505 then 23
+	when empid=507 then 25
+	when empid=509 then 29
+	when empid=511 then 27
+end
+
+
+select *,
+	    max(salary) over(
+		partition by dept
+		order by empid)--it goes row by row comparision in department
+		from employeeee_official
+
+--display the total salary of each department
+select *,
+	    sum(salary) over(
+		partition by dept
+		order by empid) as total_salary--it goes row by row comparision in department
+		from employeeee_official
+
+select *,
+	    avg(salary) over(
+		partition by dept
+		order by empid) as avg_salary--it goes row by row comparision in department
+		from employeeee_official
+
+--LEAD and LAG
+--LEAD:next person
+--LAG:previous person
+select *,--lead:sees next member information
+     lead(salary) over(  ---you can take salary,gender,joining date anything you want to know
+     partition by dept
+	 order by empid) as next_one_salary
+	 from employeeee_official
+
+select *,--lag:sees previous member information
+     lag(salary) over(
+     partition by dept
+	 order by empid) as next_one_salary
+	 from employeeee_official
+
+select *,--lead:sees next member information
+     lead(gender) over(
+     partition by dept
+	 order by empid) as next_one_salary
+	 from employeeee_official
+
+select *,
+    first_value(name) over(--gives first name 
+    partition by dept
+    order by empid) as first_empid
+    from employeeee_official
+
+select *,
+    last_value(name) over(--gives last name 
+    partition by dept
+    order by empid
+	rows between unbounded preceding and unbounded following) as last_name--this line applies only for last name
+    from employeeee_official
+
+select *,
+	NTILE(3) over(--it dividees the people into groups,ex: if 9 members are there you eant 2 groups here 
+	partition by dept
+	order by age) as group_people
+	from employeeee_official
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
