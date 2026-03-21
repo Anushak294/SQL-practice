@@ -1,0 +1,17 @@
+use company
+
+select * from employeeee_official
+
+select distinct(dept) from employeeee_official--gives different dept
+
+select top 3 * from employeeee_official--it gives top 3 rows of the table
+
+
+--gives top 3 salary in the table
+select top 3 * 
+from employeeee_official
+order by salary desc
+
+--find the employees who's salary is more than the companys average salary
+select * from employeeee_official
+where salary>(select avg(salary) from employeeee_official)
