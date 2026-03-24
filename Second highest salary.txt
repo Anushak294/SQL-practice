@@ -1,0 +1,24 @@
+-- Create Database
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+
+-- Create Employees Table
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY AUTO_INCREMENT,
+    EmpName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT
+);
+
+-- Insert Data
+INSERT INTO Employees (EmpName, Department, Salary) VALUES
+('Anu', 'HR', 30000),
+('Ravi', 'IT', 50000),
+('Sita', 'Finance', 45000),
+('Kiran', 'IT', 60000),
+('Meena', 'HR', 35000);
+
+-- Query: Find Second Highest Salary
+SELECT MAX(Salary) AS SecondHighestSalary
+FROM Employees
+WHERE Salary < (SELECT MAX(Salary) FROM Employees);
