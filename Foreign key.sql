@@ -21,6 +21,7 @@ create table emp_per(id int,
   
 insert into emp_per
 values(1,1111111,'1@gmail.com')
+  
 
 alter table emp_per
 add constraint ep_id_fk
