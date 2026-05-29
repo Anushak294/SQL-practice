@@ -8,6 +8,7 @@ create table emp3(id int,
 select * from emp3
 
 --null to not null
+  
 alter table emp3
 alter column name varchar(18) not null
 
