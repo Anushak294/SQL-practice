@@ -4,6 +4,7 @@ create table emp3(id int,
                   dept varchar(10),
                   email varchar(10));
 
+
 select * from emp3
 
 --null to not null
